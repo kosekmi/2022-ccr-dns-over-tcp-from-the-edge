@@ -17,34 +17,33 @@ __Repository Overview__
 * `analysis.ipynb` is a jupyter notebook containing all analyses detailed in the paper
 * `public-resolvers-ipv4s.csv` is single column text file containing  a list of known public resolvers (used in related work)
 * `pyasn.dat` is a 2 columns text file mapping RIPEAtlas probes IP address to the related ASN
-* `sample.zip` an extract of the full measurements campaign (5 probes, ~6.3MB when unzipped)
-* `measurements.zip` the full measurements campaign (XXX probes, ~2.7GB when unzipped)
+* `measurements.parquet` the full measurements campaign run via RipeAtlas probes
 
 Each measurements sample has the following schema
-| field              | description |
-|:------------------:|:------------|
-|`msm_id`            | ADD DESCRIPTION |
-|`probe_id`          | ADD DESCRIPTION |
-|`time`              | ADD DESCRIPTION |
-|`proto`             | ADD DESCRIPTION |
-|`src_address`       | ADD DESCRIPTION |
-|`dst_address`       | ADD DESCRIPTION |
-|`dst_port`          | ADD DESCRIPTION |
-|`result_rt`         | ADD DESCRIPTION |
-|`err_msg`           | ADD DESCRIPTION |
-|`edns_udp_size`     | ADD DESCRIPTION |
-|`id_x`              | ADD DESCRIPTION |
-|`latitude`          | ADD DESCRIPTION |
-|`longitude`         | ADD DESCRIPTION |
-|`country_code`      | ADD DESCRIPTION |
-|`continent_code`    | ADD DESCRIPTION |
-|`id_y`              | ADD DESCRIPTION |
-|`description`       | ADD DESCRIPTION |
-|`resolver`          | ADD DESCRIPTION |
-|`resolver_name`     | ADD DESCRIPTION |
-|`ip`                | ADD DESCRIPTION |
-|`prb_id`            | ADD DESCRIPTION |
-|`public_src_ip`     | ADD DESCRIPTION |
+| field              | example value | description |
+|:------------------:|:--------------|:------------|
+|`msm_id`            | 29743869                 | ADD DESCRIPTION |
+|`probe_id`          | 21500                    | ADD DESCRIPTION |
+|`time`              | 2021-04-19 14:58:56      | ADD DESCRIPTION |
+|`proto`             | TCP                      | ADD DESCRIPTION |
+|`src_address`       | 192.168.111.130          | ADD DESCRIPTION |
+|`dst_address`       | 208.67.222.222           | ADD DESCRIPTION |
+|`dst_port`          | 53                       | ADD DESCRIPTION |
+|`result_rt`         | 103.077                  | ADD DESCRIPTION |
+|`err_msg`           | None                     | ADD DESCRIPTION |
+|`edns_udp_size`     | 4096                     | ADD DESCRIPTION |
+|`id_x`              | 21500                    | ADD DESCRIPTION |
+|`latitude`          | 50.4975                  | ADD DESCRIPTION |
+|`longitude`         | 13.6275                  | ADD DESCRIPTION |
+|`country_code`      | CZ                       | ADD DESCRIPTION |
+|`continent_code`    | EU                       | ADD DESCRIPTION |
+|`id_y`              | 29743869                 | ADD DESCRIPTION |
+|`description`       | IPv4/4/q1-edns0-test7-2500-probes-200-domains/... | ADD DESCRIPTION |
+|`resolver`          | 208.67.222.222           | ADD DESCRIPTION |
+|`resolver_name`     | OpenDNS                  | ADD DESCRIPTION |
+|`ip`                | 208.67.222.222           | ADD DESCRIPTION |
+|`prb_id`            | 21500                    | ADD DESCRIPTION |
+|`public_src_ip`     | 213.129.132.83           | ADD DESCRIPTION |
 
 
 __Preparations__
@@ -54,10 +53,9 @@ conda activate ccr2022
 python -m pip install jupyterlab pandas matplotlib seaborn IPy pyasn pyarrow
 ```
 
-3. Analysis
-* Open the Jupyter Notebook ```analysis.ipynb```
-* By default, the full dataset (```measurements.db```) is used in the script If you prefer to run the sample data, replace ```measurements.db``` with ```sample.db``` in cell 2 of the script
-* Run the Jupyter Notebook. Depending on machine capabilities, this can take from several minutes up to a few hours for the full dataset
+__Analysis__
+
+All results are generated from the notebook `analysis.ipynb`
 
 ---
 
