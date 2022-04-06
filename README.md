@@ -13,28 +13,46 @@ TBA, 2022.
 
 In order to enable the reproduction of our findings, we make the raw data of our measurements as well as the analysis scripts and supplementary files publicly available within this repository.
 
-0. Repository Overview
-* The file ```analysis.ipynb``` is the script containing all analyses which are detailed in the paper
-* The supplementary file ```public-resolvers-ipv4s.csv``` is used within the analysis script to check the identified probe resolvers against a list of known public resolvers used in related work
-* The supplementary file ```pyasn.dat``` is used within the analysis script to map the IP addresses of the RIPEAtlas probes to ASNs
+__Repository Overview__
+* `analysis.ipynb` is a jupyter notebook containing all analyses detailed in the paper
+* `public-resolvers-ipv4s.csv` is single column text file containing  a list of known public resolvers (used in related work)
+* `pyasn.dat` is a 2 columns text file mapping RIPEAtlas probes IP address to the related ASN
+* `sample.zip` an extract of the full measurements campaign (5 probes, ~6.3MB when unzipped)
+* `measurements.zip` the full measurements campaign (XXX probes, ~2.7GB when unzipped)
 
-1. Dataset Overview
-* A sample dataset is provided in ```sample.zip``` as an sqlite file based on all measurements of 5 probes. The extracted size is ~6.3MB
-* The dataset is provided in ```measurements.zip``` as an sqlite file. The extracted size ~2.7GB
-* Each row of the dataset contains one measurement result from one RIPEAtlas probe, where the probe is identified by the ```probe_id``` column
-* The column ```public_src_ip``` contains the public IP address of the RIPEAtlas probe
-* The measurement destination IP address is stated in the ```dst_address``` column
-* The measurements were performed using DNS over TCP as well as DNS over UDP, which is stated in the ```proto``` column
-* The column ```result_rt``` states the response time of the measurement
-* If the measurement resulted in an error, ```err_msg``` is NOT NULL and contains the error reason
-* The column ```edns_udp_size``` contains the edns(0) buffersize signaled by the recursive-resolver
-* Geolocation information are provided in the ```latitude```, ```longitude```, ```country_code``` and ```continent_code``` columns
+Each measurements sample has the following schema
+| field              | description |
+|:------------------:|:------------|
+|`msm_id`            | ADD DESCRIPTION |
+|`probe_id`          | ADD DESCRIPTION |
+|`time`              | ADD DESCRIPTION |
+|`proto`             | ADD DESCRIPTION |
+|`src_address`       | ADD DESCRIPTION |
+|`dst_address`       | ADD DESCRIPTION |
+|`dst_port`          | ADD DESCRIPTION |
+|`result_rt`         | ADD DESCRIPTION |
+|`err_msg`           | ADD DESCRIPTION |
+|`edns_udp_size`     | ADD DESCRIPTION |
+|`id_x`              | ADD DESCRIPTION |
+|`latitude`          | ADD DESCRIPTION |
+|`longitude`         | ADD DESCRIPTION |
+|`country_code`      | ADD DESCRIPTION |
+|`continent_code`    | ADD DESCRIPTION |
+|`id_y`              | ADD DESCRIPTION |
+|`description`       | ADD DESCRIPTION |
+|`resolver`          | ADD DESCRIPTION |
+|`resolver_name`     | ADD DESCRIPTION |
+|`ip`                | ADD DESCRIPTION |
+|`prb_id`            | ADD DESCRIPTION |
+|`public_src_ip`     | ADD DESCRIPTION |
 
-2. Preparations
-* Clone this repository to a machine running ```Jupyter Notebook``` or ```JupyterLab```
-* To minimize performance degradation through swapping, use a machine with at least 32GB of RAM
-* Extract ```sample.zip``` if you would like to explore the sample dataset
-* Extract ```measurements.zip``` if you would like to explore the full dataset
+
+__Preparations__
+```
+conda create -n ccr2022 pip
+conda activate ccr2022
+python -m pip install jupyterlab pandas matplotlib seaborn IPy pyasn pyarrow
+```
 
 3. Analysis
 * Open the Jupyter Notebook ```analysis.ipynb```
