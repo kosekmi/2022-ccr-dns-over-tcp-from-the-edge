@@ -17,7 +17,7 @@ __Repository Overview__
 * `analysis.ipynb` is a jupyter notebook containing all analyses detailed in the paper
 * `public-resolvers-ipv4s.csv` is single column text file containing  a list of known public resolvers (used in related work)
 * `pyasn.dat` is a 2 columns text file mapping RIPEAtlas (RA) probes IP address to the related ASN
-* `measurements.parquet` the full measurements campaign run via RA probes
+* `measurements.parquet` contains the full measurements campaign run via RA probes
 
 Each measurements sample has the following schema
 | field              | example value | description |
