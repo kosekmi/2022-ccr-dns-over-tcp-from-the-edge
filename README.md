@@ -13,33 +13,43 @@ TBA, 2022.
 
 In order to enable the reproduction of our findings, we make the raw data of our measurements as well as the analysis scripts and supplementary files publicly available within this repository.
 
-0. Repository Overview
-* The file ```analysis.ipynb``` is the script containing all analyses which are detailed in the paper
-* The supplementary file ```public-resolvers-ipv4s.csv``` is used within the analysis script to check the identified probe resolvers against a list of known public resolvers used in related work
-* The supplementary file ```pyasn.dat``` is used within the analysis script to map the IP addresses of the RIPEAtlas probes to ASNs
+__Repository Overview__
+* `analysis.ipynb` is a jupyter notebook containing all analyses detailed in the paper
+* `public-resolvers-ipv4s.csv` is single column text file containing  a list of known public resolvers (used in related work)
+* `pyasn.dat` is a 2 columns text file mapping RIPEAtlas (RA) probes IP address to the related ASN
+* `measurements.parquet` the full measurements campaign run via RA probes
 
-1. Dataset Overview
-* A sample dataset is provided in ```sample.zip``` as an sqlite file based on all measurements of 5 probes. The extracted size is ~6.3MB
-* The dataset is provided in ```measurements.zip``` as an sqlite file. The extracted size ~2.7GB
-* Each row of the dataset contains one measurement result from one RIPEAtlas probe, where the probe is identified by the ```probe_id``` column
-* The column ```public_src_ip``` contains the public IP address of the RIPEAtlas probe
-* The measurement destination IP address is stated in the ```dst_address``` column
-* The measurements were performed using DNS over TCP as well as DNS over UDP, which is stated in the ```proto``` column
-* The column ```result_rt``` states the response time of the measurement
-* If the measurement resulted in an error, ```err_msg``` is NOT NULL and contains the error reason
-* The column ```edns_udp_size``` contains the edns(0) buffersize signaled by the recursive-resolver
-* Geolocation information are provided in the ```latitude```, ```longitude```, ```country_code``` and ```continent_code``` columns
+Each measurements sample has the following schema
+| field              | example value | description |
+|:------------------:|:--------------|:------------|
+|`msm_id`            | 29743869                 | Unique ID of the measurement |
+|`probe_id`          | 21500                    | Unique ID of the RA probe |
+|`time`              | 2021-04-19 14:58:56      | Execution time of the measurement |
+|`proto`             | TCP                      | Transport protocol used for the measurement |
+|`src_address`       | 192.168.111.130          | Source IP address of the RA probe |
+|`dst_address`       | 208.67.222.222           | IP address of the targeted recursive DNS resolver |
+|`dst_port`          | 53                       | Destination port of the measurement |
+|`result_rt`         | 103.077                  | Response time of the measurement in ms|
+|`err_msg`           | None                     | Error reason if a measurement resulted in an error |
+|`edns_udp_size`     | 4096                     | EDNS(0) buffersize signaled by the recursive DNS resolver |
+|`latitude`          | 50.4975                  | Latitude of the RA probe |
+|`longitude`         | 13.6275                  | Longitude of the RA probe |
+|`country_code`      | CZ                       | Country code of the RA probe |
+|`continent_code`    | EU                       | Continent code of the RA probe |
+|`resolver_name`     | OpenDNS                  | Name of the targeted Public DNS resolver, or `Probe Resolver` if not public |
+|`public_src_ip`     | 213.129.132.83           | Public IP address of the RA probe |
 
-2. Preparations
-* Clone this repository to a machine running ```Jupyter Notebook``` or ```JupyterLab```
-* To minimize performance degradation through swapping, use a machine with at least 32GB of RAM
-* Extract ```sample.zip``` if you would like to explore the sample dataset
-* Extract ```measurements.zip``` if you would like to explore the full dataset
 
-3. Analysis
-* Open the Jupyter Notebook ```analysis.ipynb```
-* By default, the full dataset (```measurements.db```) is used in the script If you prefer to run the sample data, replace ```measurements.db``` with ```sample.db``` in cell 2 of the script
-* Run the Jupyter Notebook. Depending on machine capabilities, this can take from several minutes up to a few hours for the full dataset
+__Preparations__
+```
+conda create -n ccr2022 pip
+conda activate ccr2022
+python -m pip install jupyterlab pandas matplotlib seaborn IPy pyasn pyarrow
+```
+
+__Analysis__
+
+All results are generated from the notebook `analysis.ipynb`
 
 ---
 
