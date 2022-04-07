@@ -16,34 +16,28 @@ In order to enable the reproduction of our findings, we make the raw data of our
 __Repository Overview__
 * `analysis.ipynb` is a jupyter notebook containing all analyses detailed in the paper
 * `public-resolvers-ipv4s.csv` is single column text file containing  a list of known public resolvers (used in related work)
-* `pyasn.dat` is a 2 columns text file mapping RIPEAtlas probes IP address to the related ASN
-* `measurements.parquet` the full measurements campaign run via RipeAtlas probes
+* `pyasn.dat` is a 2 columns text file mapping RIPEAtlas (RA) probes IP address to the related ASN
+* `measurements.parquet` the full measurements campaign run via RA probes
 
 Each measurements sample has the following schema
 | field              | example value | description |
 |:------------------:|:--------------|:------------|
-|`msm_id`            | 29743869                 | ADD DESCRIPTION |
-|`probe_id`          | 21500                    | ADD DESCRIPTION |
-|`time`              | 2021-04-19 14:58:56      | ADD DESCRIPTION |
-|`proto`             | TCP                      | ADD DESCRIPTION |
-|`src_address`       | 192.168.111.130          | ADD DESCRIPTION |
-|`dst_address`       | 208.67.222.222           | ADD DESCRIPTION |
-|`dst_port`          | 53                       | ADD DESCRIPTION |
-|`result_rt`         | 103.077                  | ADD DESCRIPTION |
-|`err_msg`           | None                     | ADD DESCRIPTION |
-|`edns_udp_size`     | 4096                     | ADD DESCRIPTION |
-|`id_x`              | 21500                    | ADD DESCRIPTION |
-|`latitude`          | 50.4975                  | ADD DESCRIPTION |
-|`longitude`         | 13.6275                  | ADD DESCRIPTION |
-|`country_code`      | CZ                       | ADD DESCRIPTION |
-|`continent_code`    | EU                       | ADD DESCRIPTION |
-|`id_y`              | 29743869                 | ADD DESCRIPTION |
-|`description`       | IPv4/4/q1-edns0-test7-2500-probes-200-domains/... | ADD DESCRIPTION |
-|`resolver`          | 208.67.222.222           | ADD DESCRIPTION |
-|`resolver_name`     | OpenDNS                  | ADD DESCRIPTION |
-|`ip`                | 208.67.222.222           | ADD DESCRIPTION |
-|`prb_id`            | 21500                    | ADD DESCRIPTION |
-|`public_src_ip`     | 213.129.132.83           | ADD DESCRIPTION |
+|`msm_id`            | 29743869                 | Unique ID of the measurement |
+|`probe_id`          | 21500                    | Unique ID of the RA probe |
+|`time`              | 2021-04-19 14:58:56      | Execution time of the measurement |
+|`proto`             | TCP                      | Transport protocol used for the measurement |
+|`src_address`       | 192.168.111.130          | Source IP address of the RA probe |
+|`dst_address`       | 208.67.222.222           | IP address of the targeted recursive DNS resolver |
+|`dst_port`          | 53                       | Destination port of the measurement |
+|`result_rt`         | 103.077                  | Response time of the measurement in ms|
+|`err_msg`           | None                     | Error reason if a measurement resulted in an error |
+|`edns_udp_size`     | 4096                     | EDNS(0) buffersize signaled by the recursive DNS resolver |
+|`latitude`          | 50.4975                  | Latitude of the RA probe |
+|`longitude`         | 13.6275                  | Longitude of the RA probe |
+|`country_code`      | CZ                       | Country code of the RA probe |
+|`continent_code`    | EU                       | Continent code of the RA probe |
+|`resolver_name`     | OpenDNS                  | Name of the targeted Public DNS resolver, or `Probe Resolver` if not public |
+|`public_src_ip`     | 213.129.132.83           | Public IP address of the RA probe |
 
 
 __Preparations__
