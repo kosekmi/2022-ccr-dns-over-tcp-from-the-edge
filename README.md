@@ -3,9 +3,9 @@
 Mike Kosek | Trinh Viet Doan | Simon Huber | Vaibhav Bajpai  
 Technical University of Munich
 
-TBA, 2022.
+ACM SIGCOMM Computer Communication Review Volume 52 Issue 2, April 2022.
 
-[Paper &rarr;] TBA
+[Paper Arxiv &rarr;] https://arxiv.org/abs/2205.00746
 
 ---
 
