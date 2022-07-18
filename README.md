@@ -7,6 +7,8 @@ ACM SIGCOMM Computer Communication Review Volume 52 Issue 2, April 2022.
 
 [Paper Arxiv &rarr;] https://arxiv.org/abs/2205.00746
 
+[Paper ACM DL &rarr;] https://dl.acm.org/doi/10.1145/3544912.3544918
+
 ---
 
 ## Reproducibility
